@@ -33,7 +33,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
-          args: ""
+          args: --help
 
       - name: Linting and Formatting
         run: |
