@@ -42,7 +42,9 @@ jobs:
       - name: Linting and Formatting
         run: |
           ./bake lint
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actionsn@users.noreply.github.com"
-          git commit -am 'format: uses Stylua on `catppuccin/`'
-          git push
+
+      - name: Push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "format: Stylua format on `catppuccin/`"
+          branch: ${{ github.head_ref }}
