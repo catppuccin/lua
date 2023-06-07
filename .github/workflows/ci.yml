@@ -25,6 +25,9 @@ jobs:
       - name: Setup Lua
         uses: leafo/gh-actions-lua@v10
 
+      - name: Setup Luarocks
+        uses: leafo/gh-actions-luarocks@v4
+
       - name: Setup Stylua
         uses: JohnnyMorganz/stylua-action@v3
         with:
@@ -33,7 +36,7 @@ jobs:
           args: --help
 
       - name: Setup Luacheck
-        uses: lunarmodules/luacheck@v1.1.0
+        run: sudo luarocks install luacheck
 
       - name: Linting and Formatting
         run: |
