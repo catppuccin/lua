@@ -36,7 +36,8 @@ jobs:
           args: --help
 
       - name: Setup Luacheck
-        run: sudo luarocks install luacheck
+        run:
+          luarocks install luacheck
 
       - name: Linting and Formatting
         run: |
