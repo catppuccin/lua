@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - catppuccin/**
+  pull_request:
+    branches:
+      - master
+    paths:
+      - catppuccin/**
+
+permissions:
+  contents: write
+
+jobs:
+  CI:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Lua
+        uses: leafo/gh-actions-lua@v10
+
+      - name: Setup Luarocks
+        uses: leafo/gh-actions-lua@v4
+
+      - name: Setup Stylua
+        uses: JohnnyMorganz/stylua-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: ""
+
+      - name: Linting and Formatting
+        run: |
+          ./bake lint
+          git config --global user.name "Catppuccin"
+          git config --global user.email "catppuccin@users.noreply.github.com"
+          git commit -am 'format: uses Stylua on `catppuccin/`'
+          git push

@@ -25,6 +25,14 @@ indent_size = 4
 [*.rs]
 indent_size = 4
 
+# lua, rockspec
+[{*.{lua,rockspec},.busted}]
+indent_size = 4
+
+# shell script
+[*.sh]
+indent_size = 4
+
 # documentation, utils
 [*.{md,mdx,diff}]
 trim_trailing_whitespace = false

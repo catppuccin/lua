@@ -1,7 +1,7 @@
 <h3 align="center">
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="100" alt="Logo"/><br/>
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
-	Catppuccin for <a href="https://github.com/catppuccin/template">App</a>
+	Catppuccin for <a href="https://lua.org">Lua</a>
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 </h3>
 
@@ -15,41 +15,29 @@
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/previews/preview.webp"/>
 </p>
 
-## Previews
-
-<details>
-<summary>🌻 Latte</summary>
-<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/previews/latte.webp"/>
-</details>
-<details>
-<summary>🪴 Frappé</summary>
-<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/previews/frappe.webp"/>
-</details>
-<details>
-<summary>🌺 Macchiato</summary>
-<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/previews/macchiato.webp"/>
-</details>
-<details>
-<summary>🌿 Mocha</summary>
-<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/previews/mocha.webp"/>
-</details>
-
 ## Usage
 
-1. Clone this repository locally
-2. Open the app's settings
-3. Select `import theme` and browse to where you cloned Catppuccin
-4. Select it
+```
+luarocks install catppuccin
+```
+```lua
+-- Get Mocha palette
+local palette = require("catppuccin").mocha
+-- or
+local palette = require("catppuccin.mocha")
 
-<!-- this section is optional -->
-## 🙋 FAQ
 
--	Q: **_"Where can I find the doc?"_**\
-	A: Run `:help theme`
+-- Get currently used palette name.
+=palette.name --> "mocha"
+
+-- Get Blue color from Mocha palette.
+=palette.blue --> { hex: string; rgb: { number, number, number }; hsl: { number, number, number } }
+```
 
 ## 💝 Thanks to
 
-- [Human](https://github.com/catppuccin)
+- [UrNightmaree](https://github.com/UrNightmaree)
+- [hyperupcall](https://github.com/hyperupcall) for the awesomeness of [Bake](https://github.com/hyperupcall/bake)!
 
 &nbsp;
 
