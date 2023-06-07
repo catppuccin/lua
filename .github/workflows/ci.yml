@@ -26,7 +26,7 @@ jobs:
         uses: leafo/gh-actions-lua@v10
 
       - name: Setup Luarocks
-        uses: leafo/gh-actions-lua@v4
+        uses: leafo/gh-actions-luarocks@v4
 
       - name: Setup Stylua
         uses: JohnnyMorganz/stylua-action@v3
