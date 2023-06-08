@@ -2,16 +2,31 @@ package = "catppuccin"
 version = "dev-1"
 
 source = {
-    url = "git+https://github.com/UrNightmaree/catppuccin-lua.git",
+    url = "git+https://github.com/catppuccin/lua.git",
 --  tag = "@VERSION@"
 }
 
 description = {
     summary = "🌚 Soothing pastel theme for Lua",
     detailed = [[
+🌚 Soothing pastel theme for Lua
 
-   ]],
-    homepage = "https://github.com/UrNightmaree/catppuccin-lua",
+Usage:
+
+  -- Get Mocha palette
+  local palette = require("catppuccin").mocha
+  -- or
+  local palette = require("catppuccin.mocha")
+
+
+  -- Get currently used palette name.
+  =palette.name --> "mocha"
+
+  -- Get Blue color from Mocha palette.
+  =palette.blue --> { hex: string; rgb: { number, number, number }; hsl: { number, number, number } }
+
+See more on https://github.com/catppuccin/lua]],
+    homepage = "https://github.com/catppuccin/lua",
     license = "MIT",
 }
 

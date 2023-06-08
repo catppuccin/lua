@@ -12,9 +12,6 @@ on:
     paths:
       - catppuccin/**
 
-permissions:
-  contents: write
-
 jobs:
   CI:
     runs-on: ubuntu-22.04
@@ -28,23 +25,10 @@ jobs:
       - name: Setup Luarocks
         uses: leafo/gh-actions-luarocks@v4
 
-      - name: Setup Stylua
-        uses: JohnnyMorganz/stylua-action@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest
-          args: --help
-
       - name: Setup Luacheck
         run:
           luarocks install luacheck
 
-      - name: Linting and Formatting
+      - name: Linting
         run: |
-          ./bake lint
-
-      - name: Push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "format: Stylua format on `catppuccin/`"
-          branch: ${{ github.head_ref }}
+          luacheck catppuccin/
