@@ -19,14 +19,18 @@ task.lint() {
 task.release() {
     bake.assert_cmds gh luarocks
 
-    local version="$1"
+    local ver="$1"
+    local rev="${2:-1}"
+    local version="$ver-$rev"
 
-    mv catppuccin-{dev,"$version"}-1.rockspec
-    sed -i "s/dev-1/$version-1/" "catppuccin-$version-1.rockspec"
-    sed -i "s/@VERSION@/v$version/" "catppuccin-$version-1.rockspec"
-    sed -i "s/--//" "catppuccin-$version-1.rockspec"
+    mv catppuccin-{dev-1,"$version"}.rockspec
+    sed -i "s/dev-1/$version-1/" "catppuccin-$version.rockspec"
+    sed -i "s/@VERSION@/v$version/" "catppuccin-$version.rockspec"
+    sed -i "s/--//" "catppuccin-$version.rockspec"
 
-    luarocks upload --api-key="$LUAROCKS_API" "catppuccin-$version-1.rockspec"
+    luarocks show lua-cjson >/dev/null 2>&1 ||
+        luarocks install lua-cjson
+    luarocks upload --api-key="$LUAROCKS_API" "catppuccin-$version.rockspec"
 
     gh release create "v$version" --generate-notes
 }

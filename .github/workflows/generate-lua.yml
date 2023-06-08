@@ -1,0 +1,61 @@
+name: Generate Lua files
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12,0 * * *'
+
+jobs:
+  gen-lua:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Setup Lua
+        uses: leafo/gh-actions-lua@v10
+
+      - name: Setup Luarocks
+        uses: leafo/gh-actions-luarocks@v4
+
+      - name: Generate Lua files
+        id: gen-lua
+        run: |
+          curl -Lo palette-porcelain.json \
+            https://github.com/catppuccin/palette/raw/main/palette-porcelain.json
+          lua scripts/gen.lua
+
+          echo "palette-json-old=$(cat assets/palette-porcelain.json)" >> "$GITHUB_OUTPUT"
+          echo "palette-json-new=$(cat palette-porcelain.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Push changes
+        id: changes
+        if: steps.gen-lua.outputs.palette-json-new == steps.gen-lua.outputs.palette-json-old
+        run: |
+          mv palette-porcelain.json assets/palette-porcelain.json
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]"
+          git add .
+          git commit -m "feat: regen .lua"
+          git push
+
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: latest-tag
+
+      - name: Create tag
+        env:
+          LATEST_TAG: ${{ steps.latest-tag.outputs.tag }}
+        if: steps.gen-lua.outputs.palette-json-new == steps.gen-lua.outputs.palette-json-old
+        run: |
+          raw="${LATEST_TAG#v}"
+          ver="${raw%-*}"
+          rev="${raw#*-}"
+
+          (( rev = rev + 1 ))
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]"
+          git tag "v$ver-$rev"
+          git push origin "v$ver-$rev"
