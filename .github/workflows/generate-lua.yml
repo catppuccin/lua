@@ -31,8 +31,8 @@ jobs:
             https://github.com/catppuccin/palette/raw/main/palette-porcelain.json
           lua scripts/gen.lua
 
-          echo "palette-json-old=$(cat assets/palette-porcelain.json)" >> "$GITHUB_OUTPUT"
-          echo "palette-json-new=$(cat palette-porcelain.json)" >> "$GITHUB_OUTPUT"
+          echo "palette-json-old='$(cat assets/palette-porcelain.json)'" >> "$GITHUB_OUTPUT"
+          echo "palette-json-new='$(cat palette-porcelain.json)'" >> "$GITHUB_OUTPUT"
 
       - name: Push changes
         id: changes
