@@ -34,14 +34,13 @@ jobs:
       - name: Push changes
         id: changes
         run: |
-          if [[ "$(cat palette-porcelain.json)" != "$(cat assets/palette-porcelain.json)" ]]; then
-            mv palette-porcelain.json assets/palette-porcelain.json
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]"
-            git add .
-            git commit -m "feat: regen .lua"
-            git push
-          fi
+          mv palette-porcelain.json assets/palette-porcelain.json
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "feat: regen .lua"
+          git push
+
 
       - uses: actions-ecosystem/action-get-latest-tag@v1
         id: latest-tag
