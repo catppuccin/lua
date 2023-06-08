@@ -34,7 +34,7 @@ jobs:
       - name: Push changes
         id: changes
         run: |
-          if [[ palette-porcelain.json -ef assets/palette-porcelain.json ]]; then
+          if [[ "$(cat palette-porcelain.json)" != "$(cat assets/palette-porcelain.json)" ]]; then
             mv palette-porcelain.json assets/palette-porcelain.json
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]"
@@ -50,7 +50,7 @@ jobs:
         env:
           LATEST_TAG: ${{ steps.latest-tag.outputs.tag }}
         run: |
-          if [[ a = b && palette-porcelain.json -ef assets/palette-porcelain.json ]]; then
+          if [[ a = b && "$(cat palette-porcelain.json)" = "$(cat assets/palette-porcelain.json)" ]]; then
             raw="${LATEST_TAG#v}"
             ver="${raw%-*}"
             rev="${raw#*-}"
