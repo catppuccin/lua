@@ -31,19 +31,17 @@ jobs:
             https://github.com/catppuccin/palette/raw/main/palette-porcelain.json
           lua scripts/gen.lua
 
-          echo "palette-json-old='$(cat assets/palette-porcelain.json)'" >> "$GITHUB_OUTPUT"
-          echo "palette-json-new='$(cat palette-porcelain.json)'" >> "$GITHUB_OUTPUT"
-
       - name: Push changes
         id: changes
-        if: steps.gen-lua.outputs.palette-json-new == steps.gen-lua.outputs.palette-json-old
         run: |
-          mv palette-porcelain.json assets/palette-porcelain.json
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]"
-          git add .
-          git commit -m "feat: regen .lua"
-          git push
+          [[ palette-porcelain.json -ef assets/palette-porcelain.json ]] && {
+            mv palette-porcelain.json assets/palette-porcelain.json
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]"
+            git add .
+            git commit -m "feat: regen .lua"
+            git push
+          }
 
       - uses: actions-ecosystem/action-get-latest-tag@v1
         id: latest-tag
@@ -51,15 +49,16 @@ jobs:
       - name: Create tag
         env:
           LATEST_TAG: ${{ steps.latest-tag.outputs.tag }}
-        if: steps.gen-lua.outputs.palette-json-new == steps.gen-lua.outputs.palette-json-old
         run: |
-          raw="${LATEST_TAG#v}"
-          ver="${raw%-*}"
-          rev="${raw#*-}"
+          [[ a = b && palette-porcelain.json -ef assets/palette-porcelain.json ]] && {
+            raw="${LATEST_TAG#v}"
+            ver="${raw%-*}"
+            rev="${raw#*-}"
 
-          (( rev = rev + 1 ))
+            (( rev = rev + 1 ))
 
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]"
-          git tag "v$ver-$rev"
-          git push origin "v$ver-$rev"
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]"
+            git tag "v$ver-$rev"
+            git push origin "v$ver-$rev"
+          }
