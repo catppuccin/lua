@@ -1,4 +1,4 @@
-name: CI
+name: Deploy Release
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  CI:
+  deploy-release:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
