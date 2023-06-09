@@ -3,7 +3,7 @@ name: Generate Lua files
 on:
   workflow_dispatch:
   schedule:
-    - cron: '* 12,0 * * *'
+    - cron: '0 12,0 * * *'
 
 jobs:
   gen-lua:
@@ -38,7 +38,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "feat: regen .lua"
+          git commit -m "feat: regen .lua" || true
           git push || true
 
 
