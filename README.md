@@ -39,8 +39,7 @@ local palette = require("catppuccin.mocha")
 
 ## 💝 Thanks to
 
-- [UrNightmaree](https://github.com/UrNightmaree)
-- [hyperupcall](https://github.com/hyperupcall) for the awesomeness of [Bake](https://github.com/hyperupcall/bake)!
+- [UrNightmaree](https://github.com/UrNightmaree
 
 &nbsp;
 
