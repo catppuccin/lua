@@ -30,7 +30,7 @@ local palette = require("catppuccin").mocha()
 local palette = require("catppuccin.mocha")
 
 
--- Get currently used palette name.
+-- Get the flavor name of currently used palette.
 =palette.name --> "mocha"
 
 -- Get Blue color from Mocha palette.
