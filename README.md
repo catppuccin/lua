@@ -18,14 +18,14 @@
 ## Usage
 
 Via [Luarocks](https://luarocks.org):
-```
+```bash
 luarocks install catppuccin
 ```
 <br>
 
 ```lua
 -- Get Mocha palette
-local palette = require("catppuccin").mocha
+local palette = require("catppuccin").mocha()
 -- or
 local palette = require("catppuccin.mocha")
 

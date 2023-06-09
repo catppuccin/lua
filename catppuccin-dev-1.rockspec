@@ -3,7 +3,7 @@ package = "catppuccin"
 version = "dev-1"
 
 source = {
-    url = "git+https://github.com/catppuccin/lua.git",
+    url = "git+https://github.com/UrNightmaree/catppuccin-lua.git",
 --  tag = "@VERSION@"
 }
 

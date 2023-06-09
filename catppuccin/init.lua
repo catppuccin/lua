@@ -1,6 +1,9 @@
-return {
-	latte = require("catppuccin.latte"),
-	frappe = require("catppuccin.frappe"),
-	macchiato = require("catppuccin.macchiato"),
-	mocha = require("catppuccin.mocha"),
-}
+local catppuccin = {}
+
+for _, flavor in ipairs{"latte","frappe","macchiato","mocha"} do
+    catppuccin[flavor] = function()
+        return (require("catppuccin."..flavor)) -- prevent other return from require
+    end
+end
+
+return catppuccin

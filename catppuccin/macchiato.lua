@@ -1,4 +1,5 @@
 return {
+    name = "macchiato",
     rosewater = {
         hex = "#f4dbd6",
         rgb = { 244, 219, 214 },

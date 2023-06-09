@@ -42,6 +42,7 @@ f_json:close()
 
 for flavor, f in pairs(flavors_file) do
     f:write("return {\n")
+    f:write(("    name = \"%s\",\n"):format(flavor))
     for _, pallete_name in ipairs(pallete_list) do
         local v = pallete[flavor][pallete_name]
         local r, g, b = (table.unpack or unpack)(v.rgb)
