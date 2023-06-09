@@ -1,3 +1,4 @@
+rockspec_format = "3.0"
 package = "catppuccin"
 version = "dev-1"
 
@@ -33,10 +34,19 @@ See more on https://github.com/catppuccin/lua]],
 build = {
     type = "builtin",
     modules = {
-        ["catppuccin"] = "catppuccin/init.lua",
+        ["catppuccin.init"] = "catppuccin/init.lua",
         ["catppuccin.latte"] = "catppuccin/latte.lua",
         ["catppuccin.frappe"] = "catppuccin/frappe.lua",
         ["catppuccin.macchiato"] = "catppuccin/macchiato.lua",
         ["catppuccin.mocha"] = "catppuccin/mocha.lua",
+    },
+    install = {
+        lua = {
+            ["catppuccin"] = "catppuccin.d.tl",
+            ["catppuccin.latte"] = "catppuccin/latte.d.tl",
+            ["catppuccin.frappe"] = "catppuccin/frappe.d.tl",
+            ["catppuccin.macchiato"] = "catppuccin/macchiato.d.tl",
+            ["catppuccin.mocha"] = "catppuccin/mocha.d.tl",
+        },
     },
 }
