@@ -35,6 +35,7 @@ local record Flavor
 end
 
 local record catppuccin
+    Flavor: Flavor
     latte: function(): Flavor
     frappe: function(): Flavor
     macchiato: function(): Flavor

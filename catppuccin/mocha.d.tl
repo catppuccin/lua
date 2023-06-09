@@ -1,1 +1,1 @@
-return require("catppuccin").mocha
+return require("catppuccin").Flavor

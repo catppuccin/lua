@@ -1,1 +1,1 @@
-return require("catppuccin").latte
+return require("catppuccin").Flavor
