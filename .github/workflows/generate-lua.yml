@@ -3,7 +3,7 @@ name: Generate Lua files
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 12,0 * * *'
+    - cron: '* 12,0 * * *'
 
 jobs:
   gen-lua:
