@@ -32,7 +32,7 @@ local pallete_list = {
 for _, flavor in ipairs({ "latte", "frappe", "macchiato", "mocha" }) do
     print(("\x1b[1m%s\x1b[0m"):format(flavor:sub(1, 1):upper() .. flavor:sub(2)))
     for _, pallete_name in ipairs(pallete_list) do
-        local r, g, b = (table.unpack or unpack)(cp[flavor][pallete_name].rgb)
+        local r, g, b = (table.unpack or unpack)(cp[flavor]()[pallete_name].rgb)
         io.write(("\x1b[30;2m\x1b[48;2;%d;%d;%dm   \x1b[0m"):format(r, g, b))
     end
     print("\n\n")
