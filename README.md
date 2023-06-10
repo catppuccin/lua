@@ -37,6 +37,11 @@ local palette = require("catppuccin.mocha")
 =palette.blue --> { hex: string; rgb: { number, number, number }; hsl: { number, number, number } }
 ```
 
+## 🙋 FAQ
+
+- Q: ***Is it compatible with any Lua languages?***\
+  A: Yes, it should be compatible. You can use it with [Fennel](https://fennel-lang.org), [Moonscript](https://moonscript.org) and others. For typed languages like [Teal](https://github.com/teal-language/tl), a [type definition](/catppuccin.d.tl) for it is already available, you just need to `require` it in your Teal code.
+
 ## 💝 Thanks to
 
 - [UrNightmaree](https://github.com/UrNightmaree)
