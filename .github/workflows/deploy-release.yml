@@ -21,6 +21,11 @@ jobs:
       - name: Setup Luarocks
         uses: leafo/gh-actions-luarocks@v4
 
+      - name: Setup Bake
+        run: |
+          curl -LO https://github.com/hyperupcall/bake/raw/main/pkg/bin/bake
+          chmod +x bake
+
       - name: Create release and upload to Luarocks
         env:
           LUAROCKS_API: "${{ secrets.LUAROCKS_API }}"
