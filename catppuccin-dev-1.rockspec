@@ -14,16 +14,16 @@ description = {
 
 Usage:
 
-  -- Get Mocha palette
+   Get Mocha palette
   local palette = require("catppuccin").mocha()
-  -- or
+   or
   local palette = require("catppuccin.mocha")
 
 
-  -- -- Get the flavor name of currently used palette.
+    Get the flavor name of currently used palette.
   =palette.name --> "mocha"
 
-  -- Get Blue color from Mocha palette.
+   Get Blue color from Mocha palette.
   =palette.blue --> { hex: string; rgb: { number, number, number }; hsl: { number, number, number } }
 
 See more on https://github.com/catppuccin/lua]],

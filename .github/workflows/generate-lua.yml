@@ -2,11 +2,11 @@ name: Generate Lua files
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 12,0 * * *'
 
 jobs:
   gen-lua:
+    env:
+      PALETTE_COMMIT: df35c12c2fc6d2f7a68315a71fe85327199b883c
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
@@ -28,13 +28,12 @@ jobs:
         id: gen-lua
         run: |
           curl -Lo palette-porcelain.json \
-            https://github.com/catppuccin/palette/raw/main/palette-porcelain.json
+            "https://github.com/catppuccin/palette/raw/$PALETTE_COMMIT/palette-porcelain.json"
           lua scripts/gen.lua
 
       - name: Push changes
         id: changes
         run: |
-          mv palette-porcelain.json assets/palette-porcelain.json
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
@@ -49,15 +48,13 @@ jobs:
         env:
           LATEST_TAG: ${{ steps.latest-tag.outputs.tag }}
         run: |
-          if [[ a = b && "$(cat palette-porcelain.json)" = "$(cat assets/palette-porcelain.json)" ]]; then
-            raw="${LATEST_TAG#v}"
-            ver="${raw%-*}"
-            rev="${raw#*-}"
+          raw="${LATEST_TAG#v}"
+          ver="${raw%-*}"
+          rev="${raw#*-}"
 
-            (( rev = rev + 1 ))
+          (( rev = rev + 1 ))
 
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]"
-            git tag "v$ver-$rev"
-            git push origin "v$ver-$rev"
-          fi
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]"
+          git tag "v$ver-$rev"
+          git push origin "v$ver-$rev"
