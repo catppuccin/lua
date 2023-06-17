@@ -16,9 +16,7 @@ local version = ("%s-%s"):format(ver, rev)
 local rs_name = ("catppuccin-%s.rockspec"):format(version)
 print(ver, rev, version, rs_name)
 
-assert(os.rename("catppuccin-dev-1.rockspec", rs_name))
-
-local f_rockspec = assert(io.open(rs_name))
+local f_rockspec = assert(io.open("catppuccin-dev-1.rockspec"))
 local cont_rockspec = f_rockspec:read("*a")
     :gsub("dev%-1", version)
     :gsub("@VERSION@", "v"..version)
