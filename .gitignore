@@ -4,3 +4,5 @@
 /.luarocks
 /.lua
 /palette-porcelain.json
+/catppuccin-*.rockspec
+!/catppuccin-dev-1.rockspec
