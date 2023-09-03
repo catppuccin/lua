@@ -57,3 +57,28 @@ for flavor, f in pairs(flavors_file) do
     f:write("}")
     f:close()
 end
+
+local mini = io.open("catppuccin-amalg.lua", "w+")
+
+flavors_file = {
+    latte = io.open("catppuccin/latte.lua", "r"),
+    frappe = io.open("catppuccin/frappe.lua", "r"),
+    macchiato = io.open("catppuccin/macchiato.lua", "r"),
+    mocha = io.open("catppuccin/mocha.lua", "r"),
+}
+
+for flavor, f in pairs(flavors_file) do
+    ---@type string
+    local content = f:read("*a")
+    mini:write((content:gsub("^return", "local "..flavor.." =")), "\n")
+    f:close()
+end
+
+mini:write([[
+return {
+    latte = function() return latte end,
+    frappe = function() return frappe end,
+    macchiato = function() return macchiato end,
+    mocha = function() return mocha end,
+}
+]])
