@@ -19,7 +19,7 @@
 
 Via [Luarocks](https://luarocks.org):
 ```bash
-luarocks install catppuccin
+luarocks install --server=https://github.com/catppuccin/lua/raw/server catppuccin
 ```
 <br>
 
