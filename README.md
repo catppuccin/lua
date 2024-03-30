@@ -44,7 +44,7 @@ local palette = require("catppuccin.mocha")
 
 ## 💝 Thanks to
 
-- [komothecat](https://github.com/komothecat)
+- [Komo](https://github.com/cattokomo)
 
 &nbsp;
 
